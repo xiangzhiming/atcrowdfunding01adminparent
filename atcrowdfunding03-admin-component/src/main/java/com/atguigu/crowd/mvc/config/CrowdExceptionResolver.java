@@ -2,6 +2,8 @@ package com.atguigu.crowd.mvc.config;
 
 
 import com.atguigu.crowd.constant.CrowdConstant;
+import com.atguigu.crowd.exception.LoginAcctAlreadyInUserException;
+import com.atguigu.crowd.exception.LoginAcctAlreadyInUserForUpdateException;
 import com.atguigu.crowd.exception.LoginFailedException;
 import com.atguigu.crowd.util.CrowdUtil;
 import com.atguigu.crowd.util.ResultEntity;
@@ -14,9 +16,41 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * 自定义异常处理类
+ */
+
 //@ControllerAdvice表示当前类是一个基于注解的异常处理器类
 @ControllerAdvice
 public class CrowdExceptionResolver {
+
+    @ExceptionHandler(value = LoginAcctAlreadyInUserForUpdateException.class)
+    public ModelAndView resolveLoginAcctAlreadyInUserForUpdateException(
+            //实际捕获到的异常类型
+            LoginAcctAlreadyInUserException exception,
+            //当前请求对象
+            HttpServletRequest request,
+            //当前响应对象
+            HttpServletResponse response
+    ) throws IOException {
+        String viewName = "system-error";
+        return commonResoolve(viewName,exception,request,response);
+
+    }
+
+    @ExceptionHandler(value = LoginAcctAlreadyInUserException.class)
+    public ModelAndView resolveLoginAcctAlreadyInUserException(
+            //实际捕获到的异常类型
+            LoginAcctAlreadyInUserException exception,
+            //当前请求对象
+            HttpServletRequest request,
+            //当前响应对象
+            HttpServletResponse response
+    ) throws IOException {
+        String viewName = "admin-add";
+        return commonResoolve(viewName,exception,request,response);
+
+    }
 
     @ExceptionHandler(value = LoginFailedException.class)
     public ModelAndView resolveMathException(

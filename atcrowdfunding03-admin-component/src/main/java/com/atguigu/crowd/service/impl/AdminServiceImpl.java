@@ -3,6 +3,8 @@ package com.atguigu.crowd.service.impl;
 import com.atguigu.crowd.constant.CrowdConstant;
 import com.atguigu.crowd.entity.Admin;
 import com.atguigu.crowd.entity.AdminExample;
+import com.atguigu.crowd.exception.LoginAcctAlreadyInUserException;
+import com.atguigu.crowd.exception.LoginAcctAlreadyInUserForUpdateException;
 import com.atguigu.crowd.exception.LoginFailedException;
 import com.atguigu.crowd.mapper.AdminMapper;
 import com.atguigu.crowd.service.api.AdminService;
@@ -11,10 +13,14 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.SimpleFormatter;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -22,8 +28,32 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminMapper adminMapper;
 
+
     public void saveAdmin(Admin admin) {
-        adminMapper.insert(admin);
+
+        // 1.密码加密
+        String userPswd = admin.getUserPswd();
+        userPswd = CrowdUtil.md5(userPswd);
+        admin.setUserPswd(userPswd);
+
+        // 生成创建时间
+        Date date = new Date();
+        SimpleDateFormat simpleFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String format = simpleFormatter.format(date);
+        admin.setCreateTime(format);
+
+        try {
+            // 执行保存
+            adminMapper.insert(admin);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            if (e instanceof DuplicateKeyException) {
+                throw new LoginAcctAlreadyInUserException(CrowdConstant.MESSAGE_LOGIN_ACCT_ALREADY_IN_USE);
+            }
+
+        }
+
     }
 
     public List<Admin> getAll() {
@@ -82,5 +112,25 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void remove(Integer adminid) {
         adminMapper.deleteByPrimaryKey(adminid);
+    }
+
+    @Override
+    public Admin getadminById(Integer adminID) {
+        Admin admin = adminMapper.selectByPrimaryKey(adminID);
+        return admin;
+    }
+
+    @Override
+    public void update(Admin admin) {
+        // “selective”表示有选择的更新，对于null值的字段不更行
+        try {
+            adminMapper.updateByPrimaryKeySelective(admin);
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (e instanceof DuplicateKeyException) {
+                throw new LoginAcctAlreadyInUserForUpdateException(CrowdConstant.MESSAGE_LOGIN_ACCT_ALREADY_IN_USE);
+            }
+
+        }
     }
 }

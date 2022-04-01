@@ -21,6 +21,58 @@ public class AdminHandler {
     @Autowired
     private AdminService adminService;
 
+    /**
+     * 更新用户提交
+     * @param admin
+     * @param pagNum
+     * @param keyword
+     * @return
+     */
+    @RequestMapping("/admin/update.html")
+    public String update(Admin admin, @RequestParam("pageNum") Integer pagNum, @RequestParam("keyword") Integer keyword) {
+        adminService.update(admin);
+        return "redirect:/admin/get/page.html?pageNum="+Integer.MAX_VALUE;
+    }
+
+    /**
+     * 更新用户
+     * @param adminID
+     * @param pageNum
+     * @param keyword
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping("/admin/to/edit/page.html")
+    public String toEditPage(@RequestParam("adminId") Integer adminID,
+                             @RequestParam("pageNum") Integer pageNum,
+                             @RequestParam("keyword") String keyword,
+                             ModelMap modelMap) {
+
+        // 1.根据adminId查询Admin对象
+        Admin admin = adminService.getadminById(adminID);
+        // 2.将admin对象存入模型
+        modelMap.addAttribute("admin", admin);
+        return "admin-edit";
+    }
+
+    /**
+     * 新增用户
+     * @param admin
+     * @return
+     */
+    @RequestMapping("/admin/save.html")
+    public String save(Admin admin) {
+        adminService.saveAdmin(admin);
+        return "redirect:/admin/get/page.html?pageNum="+Integer.MAX_VALUE;
+    }
+
+    /**
+     * 删除用户
+     * @param adminid
+     * @param pageNum
+     * @param keyword
+     * @return
+     */
     @RequestMapping("/admin/remove/{adminId}/{pageNum}/{keyword}.html")
     public String remove(@PathVariable("adminId") Integer adminid,
                          @PathVariable("pageNum") Integer pageNum,
@@ -36,7 +88,7 @@ public class AdminHandler {
 
         // 尝试方案3：重定向到/admin/get/page.html地址
         // 同时为了保持原本所在的页面和查询关键词再附加pageNum和Keyword两个请求参数
-        return "redirect:/admin/get/page.html?pageNum="+pageNum+"&keyword="+keyword;
+        return "redirect:/admin/get/page.html?pageNum=" + pageNum + "&keyword=" + keyword;
     }
 
     /**
