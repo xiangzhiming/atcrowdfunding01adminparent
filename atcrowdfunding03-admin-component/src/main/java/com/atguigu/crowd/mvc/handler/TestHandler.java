@@ -1,8 +1,6 @@
 package com.atguigu.crowd.mvc.handler;
 
 import com.atguigu.crowd.entity.Admin;
-import com.atguigu.crowd.entity.ParamData;
-import com.atguigu.crowd.entity.Student;
 import com.atguigu.crowd.service.api.AdminService;
 import com.atguigu.crowd.util.CrowdUtil;
 import com.atguigu.crowd.util.ResultEntity;
@@ -24,15 +22,13 @@ public class TestHandler {
     private AdminService adminService;
 
     @ResponseBody
-    @RequestMapping("/send/compose/object.json")
-    public ResultEntity<Student> testReceiveComposeObject(@RequestBody Student student,HttpServletRequest request) {
-        String a = null;
-        System.out.println(a.length());
-        boolean b = CrowdUtil.judgeRequestType(request);
-        System.out.println(b);
-        System.out.println(student.toString());
-        return ResultEntity.successWithData(student);
+    @RequestMapping("/test/ajax/async.html")
+    public String testAsync() throws InterruptedException {
+        Thread.sleep(5000);
+        return "success";
     }
+
+
 
     @ResponseBody
     @RequestMapping("/send/array/three.html")
@@ -43,15 +39,6 @@ public class TestHandler {
         return "success";
     }
 
-    @ResponseBody
-    @RequestMapping("/send/array/two.html")
-    public String testReceiveArrayTwo(ParamData paramData) {
-        List<Integer> array = paramData.getArray();
-        for (Integer number : array){
-            System.out.println(number);
-        }
-        return "SUCCESS";
-    }
 
     @ResponseBody
     @RequestMapping("send/array/onw.html")
