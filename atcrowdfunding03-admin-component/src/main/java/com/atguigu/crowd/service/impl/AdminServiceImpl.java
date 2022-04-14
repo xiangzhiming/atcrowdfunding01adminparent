@@ -1,6 +1,8 @@
 package com.atguigu.crowd.service.impl;
 
 import com.atguigu.crowd.constant.CrowdConstant;
+import com.atguigu.crowd.entity.Admin;
+import com.atguigu.crowd.entity.AdminExample;
 import com.atguigu.crowd.exception.LoginAcctAlreadyInUserException;
 import com.atguigu.crowd.exception.LoginAcctAlreadyInUserForUpdateException;
 import com.atguigu.crowd.exception.LoginFailedException;

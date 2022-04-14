@@ -1,5 +1,7 @@
 package com.atguigu.crowd.test;
 
+import com.atguigu.crowd.entity.Admin;
+import com.atguigu.crowd.entity.Role;
 import com.atguigu.crowd.mapper.AdminMapper;
 
 import com.atguigu.crowd.mapper.RoleMapper;

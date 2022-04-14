@@ -1,5 +1,6 @@
 package com.atguigu.crowd.mvc.handler;
 
+import com.atguigu.crowd.entity.Role;
 import com.atguigu.crowd.service.api.RoleService;
 import com.atguigu.crowd.util.ResultEntity;
 import com.github.pagehelper.PageInfo;

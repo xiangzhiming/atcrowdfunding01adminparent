@@ -1,6 +1,7 @@
 package com.atguigu.crowd.mvc.handler;
 
 import com.atguigu.crowd.constant.CrowdConstant;
+import com.atguigu.crowd.entity.Admin;
 import com.atguigu.crowd.service.api.AdminService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,7 @@
 package com.atguigu.crowd.service.impl;
 
+import com.atguigu.crowd.entity.Role;
+import com.atguigu.crowd.entity.RoleExample;
 import com.atguigu.crowd.mapper.RoleMapper;
 import com.atguigu.crowd.service.api.RoleService;
 import com.github.pagehelper.PageHelper;

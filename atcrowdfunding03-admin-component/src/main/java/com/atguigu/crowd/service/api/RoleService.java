@@ -1,5 +1,6 @@
 package com.atguigu.crowd.service.api;
 
+import com.atguigu.crowd.entity.Role;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
