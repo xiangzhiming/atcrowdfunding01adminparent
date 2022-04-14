@@ -1,6 +1,5 @@
 package com.atguigu.crowd.service.impl;
 
-import com.atguigu.crowd.entity.Role;
 import com.atguigu.crowd.mapper.RoleMapper;
 import com.atguigu.crowd.service.api.RoleService;
 import com.github.pagehelper.PageHelper;
@@ -25,5 +24,24 @@ public class RoleServiceImpl implements RoleService {
 
         // 3.封装为PageInfo对象返回
         return new PageInfo<>(roles);
+    }
+
+    @Override
+    public void saveRole(Role role) {
+        roleMapper.insert(role);
+    }
+
+    @Override
+    public void updateRole(Role role) {
+        roleMapper.updateByPrimaryKey(role);
+    }
+
+    @Override
+    public void removeRole(List<Integer> roleIdList) {
+        RoleExample roleExample = new RoleExample();
+        RoleExample.Criteria criteria = roleExample.createCriteria();
+        // delete from t_role where id in (5,8,12)
+        criteria.andIdIn(roleIdList);
+        roleMapper.deleteByExample(roleExample);
     }
 }

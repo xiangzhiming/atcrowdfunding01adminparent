@@ -1,9 +1,7 @@
 package com.atguigu.crowd.mvc.handler;
 
-import com.atguigu.crowd.entity.Admin;
 import com.atguigu.crowd.service.api.AdminService;
 import com.atguigu.crowd.util.CrowdUtil;
-import com.atguigu.crowd.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

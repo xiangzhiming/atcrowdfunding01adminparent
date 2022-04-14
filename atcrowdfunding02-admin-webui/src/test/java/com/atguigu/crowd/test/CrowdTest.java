@@ -1,12 +1,9 @@
 package com.atguigu.crowd.test;
 
-import com.atguigu.crowd.entity.Admin;
-import com.atguigu.crowd.entity.Role;
 import com.atguigu.crowd.mapper.AdminMapper;
 
 import com.atguigu.crowd.mapper.RoleMapper;
 import com.atguigu.crowd.service.api.AdminService;
-import com.atguigu.crowd.service.impl.AdminServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

@@ -1,9 +1,7 @@
 package com.atguigu.crowd.mvc.handler;
 
 import com.atguigu.crowd.constant.CrowdConstant;
-import com.atguigu.crowd.entity.Admin;
 import com.atguigu.crowd.service.api.AdminService;
-import com.atguigu.crowd.service.impl.AdminServiceImpl;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.jws.WebParam;
 import javax.servlet.http.HttpSession;
 
 @Controller

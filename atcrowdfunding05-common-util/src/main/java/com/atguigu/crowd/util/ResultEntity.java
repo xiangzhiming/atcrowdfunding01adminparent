@@ -6,8 +6,8 @@ package com.atguigu.crowd.util;
  * @param <T>
  */
 public class ResultEntity<T> {
-    public static final String SUCCESS = "成功";
-    public static final String FAILED = "失败";
+    public static final String SUCCESS = "SUCCESS";
+    public static final String FAILED = "FAILED";
 
     //用来封装当前请求处理的结果是成功还是失败
     private String result;
