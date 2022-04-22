@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+<style>
+    .wrap li ul {
+        position: absolute;
+        top: 30px;
+        display: none;
+    }
+    .wrap>ul>li {
+        float:left;
+        margin-left: 50px;
+    }
+</style>
+<script>
+    $(function () {
+        $(".wrap>ul>li").mouseover(function () {
+          // $(this).children("ul").css('display','block');
+            $(this).children('ul').show();  //show()方法本质上还是更新display属性为block
+        });
+
+        $(".wrap>ul>li").mouseout(function () {
+            $(this).children('ul').hide();  //hide()方法本质上还是更新display属性为none
+        })
+
+    })
+</script>
+<body>
+    <div class="wrap">
+        <ul>
+            <li>
+                <a href="javascript:void(0);">一级菜单</a>
+                <ul>
+                    <li><a href="javascript:void(0);">二级菜单1</a></li>
+                    <li><a href="javascript:void(0);">二级菜单2</a></li>
+                    <li><a href="javascript:void(0);">二级菜单3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);">一级菜单</a>
+                <ul>
+                    <li><a href="javascript:void(0);">二级菜单1</a></li>
+                    <li><a href="javascript:void(0);">二级菜单2</a></li>
+                    <li><a href="javascript:void(0);">二级菜单3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);">一级菜单</a>
+                <ul>
+                    <li><a href="javascript:void(0);">二级菜单1</a></li>
+                    <li><a href="javascript:void(0);">二级菜单2</a></li>
+                    <li><a href="javascript:void(0);">二级菜单3</a></li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+</body>
+</html>
