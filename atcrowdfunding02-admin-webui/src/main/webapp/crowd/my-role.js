@@ -116,7 +116,7 @@ function fillTableBody(pageInfo) {
         var checkboxTd = "<td><input id='"+roleId+"' class='itemBox' type='checkbox'></td>"
         var roleNameTd = "<td>"+roleName+"</td>";
 
-        var checkBtn = "<button type='button' class='btn btn-success btn-xs'><i class=' glyphicon glyphicon-check'></i></button>";
+        var checkBtn = "<button type='button' class='btn btn-success btn-xs checkBtn'><i class=' glyphicon glyphicon-check'></i></button>";
 
         // 通过button标签的id属性把roleId值传递到button按钮的单击响应函数中，在单击响应函数中使用this.id
         var pencilBtn = "<button type='button' id='"+roleId+"' class='btn btn-primary btn-xs pencilBtn'><i class=' glyphicon glyphicon-pencil'></i></button>";

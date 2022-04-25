@@ -18,9 +18,15 @@
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$("button").click(function(){
+		/*$("button").click(function(){
 			// 相当于浏览器的后退按钮
 			window.history.back();
+		});*/
+
+		$("#buut").click(function () {
+
+			<%response.sendRedirect(request.getContextPath()+"/admin/to/login/page.html"); %>
+
 		});
 	});
 </script>
@@ -49,7 +55,7 @@
 			requestScope.exception.message相当于exception.getMessage()
 		 -->
 		<h3 style="text-align: center;">${requestScope.exception.message }</h3>
-		<button style="width: 150px;margin: 50px auto 0px auto;" class="btn btn-lg btn-success btn-block">点我返回上一步</button>
+			<button id="buut" style="width: 150px;margin: 50px auto 0px auto;" class="btn btn-lg btn-success btn-block">点我返回上一步</button>
 	</div>
 </body>
 </html>

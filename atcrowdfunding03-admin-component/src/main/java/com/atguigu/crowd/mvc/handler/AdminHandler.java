@@ -21,6 +21,7 @@ public class AdminHandler {
 
     /**
      * 更新用户提交
+     *
      * @param admin
      * @param pagNum
      * @param keyword
@@ -29,11 +30,12 @@ public class AdminHandler {
     @RequestMapping("/admin/update.html")
     public String update(Admin admin, @RequestParam("pageNum") Integer pagNum, @RequestParam("keyword") Integer keyword) {
         adminService.update(admin);
-        return "redirect:/admin/get/page.html?pageNum="+Integer.MAX_VALUE;
+        return "redirect:/admin/get/page.html?pageNum=" + Integer.MAX_VALUE;
     }
 
     /**
      * 更新用户
+     *
      * @param adminID
      * @param pageNum
      * @param keyword
@@ -55,17 +57,19 @@ public class AdminHandler {
 
     /**
      * 新增用户
+     *
      * @param admin
      * @return
      */
     @RequestMapping("/admin/save.html")
     public String save(Admin admin) {
         adminService.saveAdmin(admin);
-        return "redirect:/admin/get/page.html?pageNum="+Integer.MAX_VALUE;
+        return "redirect:/admin/get/page.html?pageNum=" + Integer.MAX_VALUE;
     }
 
     /**
      * 删除用户
+     *
      * @param adminid
      * @param pageNum
      * @param keyword
@@ -91,6 +95,7 @@ public class AdminHandler {
 
     /**
      * 用户管理分页查询
+     *
      * @param keyword  表示查询的条件
      * @param pageNum  表示哪一页
      * @param pageSize 表示每页显示几条
@@ -98,12 +103,12 @@ public class AdminHandler {
      * @return
      */
     @RequestMapping("/admin/get/page.html")
-    public String getPagInfo(@RequestParam(value = "keyword",defaultValue = "") String keyword,
-                             @RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
-                             @RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize,
+    public String getPagInfo(@RequestParam(value = "keyword", defaultValue = "") String keyword,
+                             @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                             @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                              ModelMap modelMap) {
         // 调用Service方法获取PageInfo对象
-        PageInfo<Admin> pageInfo = adminService. getPageInfo(keyword, pageNum, pageSize);
+        PageInfo<Admin> pageInfo = adminService.getPageInfo(keyword, pageNum, pageSize);
 
         // 将PageInfo对象存入模型
         modelMap.addAttribute(CrowdConstant.ATTR_NAME_PAGE_INFO, pageInfo);
@@ -113,6 +118,7 @@ public class AdminHandler {
 
     /**
      * 退出请求
+     *
      * @param session
      * @return
      */
@@ -125,6 +131,7 @@ public class AdminHandler {
 
     /**
      * 登录请求
+     *
      * @param loginAcct
      * @param userPswd
      * @param session
@@ -137,8 +144,13 @@ public class AdminHandler {
         Admin admin = adminService.getAdminByLoginAcct(loginAcct, userPswd);
 
         // 将登录成功返回的admin对象存入到session域
-        session.setAttribute(CrowdConstant.ATTR_NAME_LOGIN_ADMIN,admin);
+        session.setAttribute(CrowdConstant.ATTR_NAME_LOGIN_ADMIN, admin);
         return "redirect:/admin/to/main/page.html";
     }
 
+    @RequestMapping("/log/login.html")
+    public String loging() {
+
+        return "index";
+    }
 }

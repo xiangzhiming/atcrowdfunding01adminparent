@@ -214,7 +214,7 @@
 
 			// 使用二者的比较结果设置总的checkbox
 			$("#summaryBox").prop("checked", checkedBoxCount == totalBoxCount);
-		})
+		});
 
 		// 给批量删除的按钮绑定单击响应函数
 		$("#batchRemoveBtn").click(function () {
@@ -247,6 +247,13 @@
 			showConfirmModal(roleArray);
 
 		});
+
+		// 给分配权限按钮绑定单机响应函数
+		$("#rolePageBody").on("click",".checkBtn",function () {
+
+			$("#assignModal").modal("show");
+
+		})
 
 	});
 </script>
@@ -307,5 +314,6 @@
 	<%@include file="/WEB-INF/modal-role-add.jsp" %>
 	<%@include file="/WEB-INF/modal-role-edit.jsp" %>
 	<%@include file="/WEB-INF/modal-role-confirm.jsp" %>
+	<%@include file="/WEB-INF/modal-role-assign-auth.jsp" %>
 </body>
 </html>
